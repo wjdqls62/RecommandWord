@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Recommand-Word</string>
+
+    <!-- 레빗 A키보드 App명 -->
+    <string name="akeyboard_app_name">REBIT A키보드</string>
+    <!-- 레빗 A키보드 Package명 -->
+    <string name="akeyboard_package_name">com.phillit.akeyboard</string>
+    <!-- TestCase의 경로 -->
+    <string name="path_TestCase">/sdcard/QA/InputTest/TestWord.xls</string>
+</resources>
