@@ -65,9 +65,15 @@ public class Qwerty extends KeyType {
 
     private void typingKeyboard(char[] arrChar){
         boolean isCurrentWordContainsEndString= false;
+        int lastIndex = 0;
         String separateEndStringWord = "";
         Key key = null;
         Key.keyCordinate recommendKey = null;
+
+        if((lastIndex = isCurWordLastIndexEndString(arrChar)) != -1){
+            isCurrentWordContainsEndString = true;
+            Log.i("@@@", "special char index : " + lastIndex);
+        }
 
 
         for(int i=0; i<arrChar.length; i++){
@@ -107,9 +113,19 @@ public class Qwerty extends KeyType {
                     for(int j=0; j<key.keyCordinates.size(); j++){
                         try{
                             recommendKey = keyboard.searchKeyboardView(currentWord);
-                            if(recommendKey != null){
+                            if(recommendKey != null && !isCurrentWordContainsEndString){
                                 device.clickAndCount(recommendKey.x, recommendKey.y);
                                 return;
+                            }else if(isCurrentWordContainsEndString && recommendKey == null){
+                                // 단어 마지막에 끝맺음 문자가 포함될 경우 끝맺음 문자와 단어를 분리한다.
+                                // 분리 후 단어만 추천단어바에서 검색한다. 추천단어에서 입력됬을 경우 반복문의 cnt를 끝맺음 문자부터 재개한다.
+                                String delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
+                                recommendKey = keyboard.searchKeyboardView(delSpecialChar);
+                                if(recommendKey != null){
+                                    device.clickAndCount(recommendKey.x, recommendKey.y);
+                                    i = lastIndex-1;
+                                    break;
+                                }
                             }
                         }catch (NullPointerException e){
                             Log.i("@@@", "recommendKey is null...");
@@ -127,8 +143,11 @@ public class Qwerty extends KeyType {
                 specialCharacter.input(targetChar);
             }
         }
-        device.clickAndCount(spacebar_x, spacebar_y);
-        device.userWait(500);
+        // 추천단어를 누르지 못하고 풀타로 입력했을 경우 스페이스바를 수동으로 입력한다.
+        if(recommendKey == null){
+            device.clickAndCount(spacebar_x, spacebar_y);
+            device.userWait(500);
+        }
     }
 
     // 대문자 체크
@@ -188,11 +207,31 @@ public class Qwerty extends KeyType {
         device.userWait(500);
     }
 
-    public void isCurWordLastIndexEndString(char[] str){
+    // 끝맺음 문자가 몇번쨰 Index인지 Return한다.
+    public int isCurWordLastIndexEndString(char[] str){
         String temp = String.valueOf(str);
+        boolean isLast1 = false, isLast2 = false;
+        int index = -1;
 
-        String last2 =  String.valueOf(temp.charAt(temp.length()-2));
-        String last1 =  String.valueOf(temp.charAt(temp.length()-1));
+        try{
+            String last2 =  String.valueOf(temp.charAt(temp.length()-2));
+            String last1 =  String.valueOf(temp.charAt(temp.length()-1));
 
+            if(last1.equals(",") || last1.equals(".") || last1.equals("?") || last1.equals("?") || last1.equals("!")){
+                isLast1 = true;
+            }else if(last2.equals(",") || last2.equals(".") || last2.equals("?") || last2.equals("?") || last2.equals("!")){
+                isLast2 = true;
+            }
+
+            if(isLast1 && isLast2){
+                index = temp.length()-2;
+            }else if(isLast1){
+                index = temp.length()-1;
+            }
+        }catch (StringIndexOutOfBoundsException e){
+
+        }
+
+        return index;
     }
 }

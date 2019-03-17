@@ -30,7 +30,7 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
         if(BuildConfig.DEBUG){
             Log.i("@@@", "Test()");
         }
-        String[] targetStr = {"I", "am", "so", "jealous.", "But", "if", "anyone", "deserves", "it,", "it's", "you."};
+        String[] targetStr = {"I", "love", "you.", "This", "is", "a", "boy?", "We'll", "the", "Change", "World!"};
 
         for(int i=0; i<targetStr.length; i++){
             qwerty_eng.currentWord = targetStr[i];
