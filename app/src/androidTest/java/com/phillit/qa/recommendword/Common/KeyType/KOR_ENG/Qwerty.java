@@ -2,10 +2,13 @@ package com.phillit.qa.recommendword.Common.KeyType.KOR_ENG;
 
 import android.util.Log;
 
+import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
+import com.phillit.qa.recommendword.Common.KeyboardType.KeyboardType;
 import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
+import com.phillit.qa.recommendword.Common.SeparateKorean;
 import com.phillit.qa.recommendword.Common.XmlParser;
 import java.util.HashMap;
 
@@ -21,6 +24,7 @@ public class Qwerty extends KeyType {
     private int spacebar_x, spacebar_y, language;
     private int shift_x, shift_y;
     boolean isSpecialChar = false;
+    private SeparateKorean separater;
     private int testType;
 
     public Qwerty(Device device, Keyboard keyboard, int screenOrientation, int language){
@@ -45,21 +49,22 @@ public class Qwerty extends KeyType {
             shift_x = normalKeyList.get("↑").keyCordinates.get(0).x;
             shift_y = normalKeyList.get("↑").keyCordinates.get(0).y;
         }
+
+        if(language == KeyType.KOR_QWERTY){
+            separater = new SeparateKorean();
+        }
     }
 
     @Override
     public void input(String args) {
         arrChar = args.toCharArray();
         typingKeyboard(arrChar);
-
-        //device.getUiDevice().click(spacebar_x, spacebar_y);
     }
 
     @Override
     public void input(StringBuffer args) {
         typingKeyboard(args);
         device.clickAndCount(spacebar_x, spacebar_y);
-        //device.getUiDevice().click(spacebar_x, spacebar_y);
     }
 
     private void typingKeyboard(char[] arrChar){
@@ -69,11 +74,14 @@ public class Qwerty extends KeyType {
         Key key = null;
         Key.keyCordinate recommendKey = null;
 
+        if(language == KeyType.KOR_QWERTY){
+            arrChar = separater.Convert(String.valueOf(arrChar)).toCharArray();
+        }
+
         if((lastIndex = isCurWordLastIndexEndString(arrChar)) != -1){
             isCurrentWordContainsEndString = true;
             Log.i("@@@", "special char index : " + lastIndex);
         }
-
 
         for(int i=0; i<arrChar.length; i++){
             String targetChar = String.valueOf(arrChar[i]);
@@ -118,8 +126,17 @@ public class Qwerty extends KeyType {
                             }else if(isCurrentWordContainsEndString && recommendKey == null){
                                 // 단어 마지막에 끝맺음 문자가 포함될 경우 끝맺음 문자와 단어를 분리한다.
                                 // 분리 후 단어만 추천단어바에서 검색한다. 추천단어에서 입력됬을 경우 반복문의 count를 끝맺음 문자부터 재시작한다.
-                                String delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
-                                recommendKey = keyboard.searchKeyboardView(delSpecialChar);
+                                String delSpecialChar = "";
+                                if(language == KeyType.ENG_QWERTY){
+                                    delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
+                                    recommendKey = keyboard.searchKeyboardView(delSpecialChar);
+                                }else if(language == KeyType.KOR_QWERTY){
+                                    //delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
+                                    delSpecialChar = currentWord.substring(0, isCurWordLastIndexEndString(currentWord.toCharArray()));
+                                    recommendKey = keyboard.searchKeyboardView(delSpecialChar);
+                                    Log.i("@@@", delSpecialChar);
+                                }
+
                                 if(recommendKey != null){
                                     device.clickAndCount(recommendKey.x, recommendKey.y);
                                     i = lastIndex-1;
