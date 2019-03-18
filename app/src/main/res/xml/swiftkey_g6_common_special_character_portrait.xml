@@ -231,7 +231,6 @@
         <Y1>2570</Y1>
         <X2>865</X2>
         <Y2>2465</Y2>
-
     </Key>
     <Key>
         <Value>?</Value>
@@ -240,7 +239,14 @@
         <Y1>2570</Y1>
         <X2>1270</X2>
         <Y2>2465</Y2>
-
+    </Key>
+    <Key>
+        <Value>$</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>430</X1>
+        <Y1>2370</Y1>
+        <X2>155</X2>
+        <Y2>2370</Y2>
     </Key>
 
     <!-- Shift -->

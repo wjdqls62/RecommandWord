@@ -5,7 +5,6 @@ import android.util.Log;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
-import com.phillit.qa.recommendword.Common.KeyboardType.SwiftKeyboard;
 import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
 import com.phillit.qa.recommendword.Common.XmlParser;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class Qwerty extends KeyType {
         this.language = language;
         parser = new XmlParser(device.getContext(), screenOrientation, language, device);
         buffer = new StringBuffer();
-        testType = device.getTestType();
+        testType = device.getKeyboardType();
         this.keyboard = keyboard;
 
         // 문자키, 특수문자키를 XML로부터 읽어온다
@@ -118,7 +117,7 @@ public class Qwerty extends KeyType {
                                 return;
                             }else if(isCurrentWordContainsEndString && recommendKey == null){
                                 // 단어 마지막에 끝맺음 문자가 포함될 경우 끝맺음 문자와 단어를 분리한다.
-                                // 분리 후 단어만 추천단어바에서 검색한다. 추천단어에서 입력됬을 경우 반복문의 cnt를 끝맺음 문자부터 재개한다.
+                                // 분리 후 단어만 추천단어바에서 검색한다. 추천단어에서 입력됬을 경우 반복문의 count를 끝맺음 문자부터 재시작한다.
                                 String delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
                                 recommendKey = keyboard.searchKeyboardView(delSpecialChar);
                                 if(recommendKey != null){

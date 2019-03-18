@@ -3,9 +3,7 @@ package com.phillit.qa.recommendword.Common;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
-import android.util.Log;
 
-import com.phillit.qa.recommendword.Common.DeviceType.DeviceType;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
 import com.phillit.qa.recommendword.Common.KeyboardType.KeyboardType;
 import com.phillit.qa.recommendword.R;
@@ -32,7 +30,7 @@ public class XmlParser {
         this.device = device;
         this.language = language;
         deviceModelName = device.getDeviceModelName();
-        testType = device.getTestType();
+        testType = device.getKeyboardType();
         try {
             parseXML();
         } catch (IOException e) {

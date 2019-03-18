@@ -3,6 +3,7 @@ package com.phillit.qa.recommendword.Common;
 import android.content.Context;
 import android.util.Log;
 
+import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.R;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -17,37 +18,46 @@ public class TestCaseParser {
     private HSSFWorkbook workbook;
     private HSSFSheet sheet;
     private StringBuffer word;
-    private String filePath = "/sdcard/QA/InputTest/TestWord.xls";
+    private String filePath;
     private FileInputStream fis;
     private ArrayList<String> wordList;
+    private Device device;
     private int getContents = 0; // 행에서 몇번째 데이터를 갖고오는지?
 
-    public TestCaseParser(String mode, Context context){
+    public TestCaseParser(String mode, Device device){
         //int rowLength = 0;
-        filePath = context.getResources().getString(R.string.path_TestCase);
+        filePath = device.getContext().getResources().getString(R.string.path_TestCase);
         word = new StringBuffer();
 
         try {
             wordList = new ArrayList<>();
             fis = new FileInputStream(filePath);
             workbook = new HSSFWorkbook(fis);
-            if(mode.equals("kor")){
-                sheet = workbook.getSheet("한국어");
-                getContents = 2;
-            }else if(mode.equals("eng")){
-                sheet = workbook.getSheet("영어");
-                getContents = 0;
-            }else if(mode.equals("Env")){
-                sheet = workbook.getSheet("Env");
+            if(mode.equals("KOR")){
+                sheet = workbook.getSheet("KOR");
+                if(device.getTestType() == Configuration.KSR_CONVERSATION){
+                    getContents = 1;
+                }else if(device.getTestType() == Configuration.KSR_LG){
+                    getContents = 5;
+                }
+            }else if(mode.equals("ENG")){
+                sheet = workbook.getSheet("ENG");
+                if(device.getTestType() == Configuration.KSR_CONVERSATION){
+                    getContents = 1;
+                }else if(device.getTestType() == Configuration.KSR_LG){
+                    getContents = 5;
+                }
+            }else if(mode.equals("ENV")){
+                sheet = workbook.getSheet("ENV");
                 getContents = 1;
         }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.i("@@@", "FileNotFoundException");
+            Log.i("@@@", getClass().getName() + " : FileNotFoundException...");
         } catch (IOException e) {
             e.printStackTrace();
-            Log.i("@@@", "IO Exception");
+            Log.i("@@@", getClass().getName() + "IO Exception");
         }
     }
 

@@ -1,11 +1,9 @@
 package com.phillit.qa.recommendword.Common.KeyboardType;
-import android.util.Log;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
 import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
 import com.phillit.qa.recommendword.Common.RecommendWordParse.RecommendWordParse;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

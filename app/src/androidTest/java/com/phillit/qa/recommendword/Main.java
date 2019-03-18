@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiDevice;
+
+import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.KeyType.KOR_ENG.Qwerty;
 import com.phillit.qa.recommendword.Common.KeyboardType.KeyboardType;
@@ -24,19 +26,17 @@ public class Main {
     private Context context;
     private Device device;
     private UiDevice uiDevice;
-    private Qwerty eng_qwerty;
 
     @Before
     public void ReadyTest() throws IOException {
         uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
         context = InstrumentationRegistry.getTargetContext();
-        device = new Device(uiDevice, context, KeyboardType.G6_KEYBOARD_SWIFT);
+        device = new Device(uiDevice, context, KeyboardType.G6_KEYBOARD_SWIFT, Configuration.KSR_CONVERSATION);
 
     }
 
     @Test
     public void Test() {
-        //uiDevice.dumpWindowHierarchy(new File("/sdcard/QA/Temp/temp.txt"));
         TC01_SwiftKeyboard_G6_ENG TC01 = new TC01_SwiftKeyboard_G6_ENG(device);
         TC01.Start();
     }

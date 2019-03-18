@@ -14,7 +14,6 @@ import android.support.test.uiautomator.UiSelector;
 import android.text.TextUtils;
 import android.util.Log;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
-import com.phillit.qa.recommendword.Common.KeyType.KOR_ENG.Qwerty;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
 import com.phillit.qa.recommendword.R;
 import java.io.File;
@@ -34,11 +33,12 @@ public class Device {
     private String meminfo, deviceModelName;
     private Date date;
     private String start_Time, start_Time2, end_Time, end_Time2;
-    private int testType = 0;
+    private int keyboardType, testType = 0;
     public int typing_count = 0;
 
-    public Device(UiDevice Device, Context context, int testType) throws IOException {
+    public Device(UiDevice Device, Context context, int keyboardType, int testType) throws IOException {
         this.uiDevice = Device;
+        this.keyboardType = keyboardType;
         this.testType = testType;
         this.context = context;
         testPlan = new TestPlan();
@@ -203,7 +203,7 @@ public class Device {
     }
 
     public TestCaseParser setTestPlan(){
-        TestCaseParser parser = new TestCaseParser("Env", context);
+        TestCaseParser parser = new TestCaseParser("Env", this);
         testPlan = parser.getTestPlan(testPlan);
         return parser;
     }
@@ -602,6 +602,10 @@ public class Device {
     public void Device_Precondition() throws UiObjectNotFoundException {
         lockScreen_Release();
         AKeyboardSetting();
+    }
+
+    public int getKeyboardType(){
+        return keyboardType;
     }
 
     public int getTestType(){

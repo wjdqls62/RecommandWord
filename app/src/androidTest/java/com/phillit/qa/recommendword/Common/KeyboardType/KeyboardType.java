@@ -6,4 +6,6 @@ public abstract class KeyboardType {
     public static final int KEYBOARD_SAMSUNG = 3;
     public static final int KEYBOARD_LG = 4;
     public static final int KEYBOARD_REBIT = 5;
+
+
 }
