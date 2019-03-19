@@ -3,51 +3,61 @@
 <Keypad>
     <Key>
         <Value>ㅂ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>70</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅈ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>220</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㄷ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>360</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㄱ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>500</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅅ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>650</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅛ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>790</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅕ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>940</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅑ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1080</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅐ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1225</X1>
         <Y1>1945</Y1>
     </Key>
     <Key>
         <Value>ㅔ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1370</X1>
         <Y1>1945</Y1>
     </Key>
@@ -56,46 +66,55 @@
     <!-- 2cols -->
     <Key>
         <Value>ㅁ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>145</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㄴ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>290</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅇ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>430</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㄹ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>580</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅎ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>725</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅗ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>865</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅓ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1010</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅏ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1155</X1>
         <Y1>2155</Y1>
     </Key>
     <Key>
         <Value>ㅣ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1300</X1>
         <Y1>2155</Y1>
     </Key>
@@ -104,43 +123,109 @@
     <!-- 3cols -->
     <Key>
         <Value>ㅋ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>290</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅌ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>430</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅊ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>580</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅍ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>725</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅠ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>865</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅜ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1010</X1>
         <Y1>2370</Y1>
     </Key>
     <Key>
         <Value>ㅡ</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1155</X1>
         <Y1>2370</Y1>
+    </Key>
+
+    <!-- 쌍자음 및 모음-->
+    <Key>
+        <Value>ㅃ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>70</X1>
+        <Y1>1945</Y1>
+        <X2>70</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㅉ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>220</X1>
+        <Y1>1945</Y1>
+        <X2>220</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㄸ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>360</X1>
+        <Y1>1945</Y1>
+        <X2>360</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㄲ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>500</X1>
+        <Y1>1945</Y1>
+        <X2>500</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㅆ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>650</X1>
+        <Y1>1945</Y1>
+        <X2>650</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㅒ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>1225</X1>
+        <Y1>1945</Y1>
+        <X2>1225</X2>
+        <Y2>1945</Y2>
+    </Key>
+    <Key>
+        <Value>ㅖ</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>1370</X1>
+        <Y1>1945</Y1>
+        <X2>1370</X2>
+        <Y2>1945</Y2>
     </Key>
 
     <!-- Shift -->
     <Key>
         <Value>↑</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>95</X1>
         <Y1>2370</Y1>
     </Key>
@@ -148,6 +233,7 @@
     <!-- Spacebar-->
     <Key>
         <Value>^</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>720</X1>
         <Y1>2570</Y1>
     </Key>
@@ -155,51 +241,61 @@
     <!-- Number -->
     <Key>
         <Value>1</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>70</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>2</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>220</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>3</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>360</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>4</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>500</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>5</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>650</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>6</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>790</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>7</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>940</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>8</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1080</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>9</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1225</X1>
         <Y1>1800</Y1>
     </Key>
     <Key>
         <Value>0</Value>
+        <Longclickable>FALSE</Longclickable>
         <X1>1370</X1>
         <Y1>1800</Y1>
     </Key>
