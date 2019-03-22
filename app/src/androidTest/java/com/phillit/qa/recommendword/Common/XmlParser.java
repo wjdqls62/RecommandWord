@@ -68,78 +68,89 @@ public class XmlParser {
             if (parsingMode == KeyType.PORTRAIT) {
                 if (language == KeyType.KOR_QWERTY) {
                     parser = resource.getXml(R.xml.swiftkey_g6_kor_qwerty_portrait);
-                }else if(language == KeyType.ENG_QWERTY){
+                } else if (language == KeyType.ENG_QWERTY) {
                     parser = resource.getXml(R.xml.swiftkey_g6_eng_qwerty_portrait);
                 }
             }
+        }else if(testType == KeyboardType.S10P_KEYBOARD_SAMSUNG){
+            if (language == KeyType.KOR_QWERTY) {
+                parser = resource.getXml(R.xml.samsung_gs10p_kor_qwerty_portrait);
+            } else if (language == KeyType.ENG_QWERTY) {
+                parser = resource.getXml(R.xml.samsung_gs10p_eng_qwerty_portrait);
+            }
+        }
 
-            keyList = new HashMap<>();
+        keyList = new HashMap<>();
 
-            int eventType = parser.getEventType();
+        int eventType = parser.getEventType();
 
-            while (eventType != XmlResourceParser.END_DOCUMENT) {
-                String tagName = parser.getName();
+        while (eventType != XmlResourceParser.END_DOCUMENT) {
+            String tagName = parser.getName();
 
-                if (eventType == XmlResourceParser.START_TAG) {
-                    if (tagName.equals("Value")) {
-                        key = new Key();
-                        key.setKeyValue(parser.nextText());
-                    }
-                    else if(tagName.contains("Longclickable")){
-                        key.setLongClickable(Boolean.parseBoolean(parser.nextText()));
-                    }
-                    else if (tagName.contains("X")) {
-                        key.setX(Integer.parseInt(parser.nextText()));
-                    }
-                    else if (tagName.contains("Y")) {
-                        key.setY(Integer.parseInt(parser.nextText()));
-                    }
-                } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (tagName.equals("Key")) {
-                        // Parsing된 Key 정보 출력
-                        key.logKeyinfo();
-                        keyList.put(key.keyValue, key);
-                        key = null;
-                    }
+            if (eventType == XmlResourceParser.START_TAG) {
+                if (tagName.equals("Value")) {
+                    key = new Key();
+                    key.setKeyValue(parser.nextText());
                 }
-                eventType = parser.next();
-            } // End while
-
-            if (testType == KeyboardType.G6_KEYBOARD_SWIFT) {
-                // 특수문자
-                if (parsingMode == KeyType.PORTRAIT) {
-                    parser = resource.getXml(R.xml.swiftkey_g6_common_special_character_portrait);
+                else if(tagName.contains("Longclickable")){
+                    key.setLongClickable(Boolean.parseBoolean(parser.nextText()));
+                }
+                else if (tagName.contains("X")) {
+                    key.setX(Integer.parseInt(parser.nextText()));
+                }
+                else if (tagName.contains("Y")) {
+                    key.setY(Integer.parseInt(parser.nextText()));
+                }
+            } else if (eventType == XmlResourceParser.END_TAG) {
+                if (tagName.equals("Key")) {
+                    // Parsing된 Key 정보 출력
+                    key.logKeyinfo();
+                    keyList.put(key.keyValue, key);
+                    key = null;
                 }
             }
+            eventType = parser.next();
+        } // End while
 
-            specialKeyList = new HashMap<>();
-
-            eventType = parser.getEventType();
-
-            while (eventType != XmlResourceParser.END_DOCUMENT) {
-                String tagName = parser.getName();
-
-                if (eventType == XmlResourceParser.START_TAG) {
-                    if (tagName.equals("Value")) {
-                        key = new Key();
-                        key.setKeyValue(parser.nextText());
-                    } else if (tagName.contains("X")) {
-                        key.setX(Integer.parseInt(parser.nextText()));
-                    } else if (tagName.contains("Y")) {
-                        key.setY(Integer.parseInt(parser.nextText()));
-                    }else if(tagName.contains("Longclickable")){
-                        key.setLongClickable(Boolean.parseBoolean(parser.nextText()));
-                    }
-                } else if (eventType == XmlResourceParser.END_TAG) {
-                    if (tagName.equals("Key")) {
-                        // Parsing된 Key 정보 출력
-                        key.logKeyinfo();
-                        specialKeyList.put(key.keyValue, key);
-                        key = null;
-                    }
-                }
-                eventType = parser.next();
-            } // End while
+        if (testType == KeyboardType.G6_KEYBOARD_SWIFT) {
+            // 특수문자
+            if (parsingMode == KeyType.PORTRAIT) {
+                parser = resource.getXml(R.xml.swiftkey_g6_common_special_character_portrait);
+            }
+        }else if(testType == KeyboardType.S10P_KEYBOARD_SAMSUNG){
+            if (parsingMode == KeyType.PORTRAIT) {
+                parser = resource.getXml(R.xml.samsung_gs10p_common_special_character_portrait);
+            }
         }
+
+        specialKeyList = new HashMap<>();
+
+        eventType = parser.getEventType();
+
+        while (eventType != XmlResourceParser.END_DOCUMENT) {
+            String tagName = parser.getName();
+
+            if (eventType == XmlResourceParser.START_TAG) {
+                if (tagName.equals("Value")) {
+                    key = new Key();
+                    key.setKeyValue(parser.nextText());
+                } else if (tagName.contains("X")) {
+                    key.setX(Integer.parseInt(parser.nextText()));
+                } else if (tagName.contains("Y")) {
+                    key.setY(Integer.parseInt(parser.nextText()));
+                }else if(tagName.contains("Longclickable")){
+                    key.setLongClickable(Boolean.parseBoolean(parser.nextText()));
+                }
+            } else if (eventType == XmlResourceParser.END_TAG) {
+                if (tagName.equals("Key")) {
+                    // Parsing된 Key 정보 출력
+                    key.logKeyinfo();
+                    specialKeyList.put(key.keyValue, key);
+                    key = null;
+                }
+            }
+            eventType = parser.next();
+        } // End while
+
     }
 }

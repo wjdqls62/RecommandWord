@@ -5,61 +5,61 @@
         <Value>q</Value>
         <Longclickable>FALSE</Longclickable>
         <X1>70</X1>
-        <Y1>1945</Y1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>w</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>220</X1>
-        <Y1>1945</Y1>
+        <X1>175</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>e</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>360</X1>
-        <Y1>1945</Y1>
+        <X1>280</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>r</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>500</X1>
-        <Y1>1945</Y1>
+        <X1>385</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>t</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>650</X1>
-        <Y1>1945</Y1>
+        <X1>490</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>y</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>790</X1>
-        <Y1>1945</Y1>
+        <X1>590</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>u</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>940</X1>
-        <Y1>1945</Y1>
+        <X1>695</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>i</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1080</X1>
-        <Y1>1945</Y1>
+        <X1>800</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>o</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1225</X1>
-        <Y1>1945</Y1>
+        <X1>900</X1>
+        <Y1>1610</Y1>
     </Key>
     <Key>
         <Value>p</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1370</X1>
-        <Y1>1945</Y1>
+        <X1>1015</X1>
+        <Y1>1610</Y1>
     </Key>
 
 
@@ -67,56 +67,56 @@
     <Key>
         <Value>a</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>145</X1>
-        <Y1>2155</Y1>
+        <X1>120</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>s</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>290</X1>
-        <Y1>2155</Y1>
+        <X1>225</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>d</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>430</X1>
-        <Y1>2155</Y1>
+        <X1>330</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>f</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>580</X1>
-        <Y1>2155</Y1>
+        <X1>435</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>g</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>725</X1>
-        <Y1>2155</Y1>
+        <X1>540</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>h</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>865</X1>
-        <Y1>2155</Y1>
+        <X1>645</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>j</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1010</X1>
-        <Y1>2155</Y1>
+        <X1>750</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>k</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1155</X1>
-        <Y1>2155</Y1>
+        <X1>855</X1>
+        <Y1>1760</Y1>
     </Key>
     <Key>
         <Value>l</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1300</X1>
-        <Y1>2155</Y1>
+        <X1>960</X1>
+        <Y1>1760</Y1>
     </Key>
 
 
@@ -124,60 +124,60 @@
     <Key>
         <Value>z</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>290</X1>
-        <Y1>2370</Y1>
+        <X1>225</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>x</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>430</X1>
-        <Y1>2370</Y1>
+        <X1>330</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>c</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>580</X1>
-        <Y1>2370</Y1>
+        <X1>435</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>v</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>725</X1>
-        <Y1>2370</Y1>
+        <X1>540</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>b</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>865</X1>
-        <Y1>2370</Y1>
+        <X1>645</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>n</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1010</X1>
-        <Y1>2370</Y1>
+        <X1>750</X1>
+        <Y1>1900</Y1>
     </Key>
     <Key>
         <Value>m</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1155</X1>
-        <Y1>2370</Y1>
+        <X1>855</X1>
+        <Y1>1900</Y1>
     </Key>
 
     <!-- Shift -->
     <Key>
         <Value>↑</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>95</X1>
-        <Y1>2370</Y1>
+        <X1>85</X1>
+        <Y1>1900</Y1>
     </Key>
 
     <!-- Spacebar-->
     <Key>
         <Value>^</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>720</X1>
-        <Y1>2570</Y1>
+        <X1>595</X1>
+        <Y1>2040</Y1>
     </Key>
 
     <!-- Number -->
@@ -185,70 +185,61 @@
         <Value>1</Value>
         <Longclickable>FALSE</Longclickable>
         <X1>70</X1>
-        <Y1>1800</Y1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>2</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>220</X1>
-        <Y1>1800</Y1>
+        <X1>175</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>3</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>360</X1>
-        <Y1>1800</Y1>
+        <X1>280</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>4</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>500</X1>
-        <Y1>1800</Y1>
+        <X1>385</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>5</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>650</X1>
-        <Y1>1800</Y1>
+        <X1>490</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>6</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>790</X1>
-        <Y1>1800</Y1>
+        <X1>590</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>7</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>940</X1>
-        <Y1>1800</Y1>
+        <X1>695</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>8</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1080</X1>
-        <Y1>1800</Y1>
+        <X1>800</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>9</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1225</X1>
-        <Y1>1800</Y1>
+        <X1>900</X1>
+        <Y1>1475</Y1>
     </Key>
     <Key>
         <Value>0</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>1370</X1>
-        <Y1>1800</Y1>
+        <X1>1015</X1>
+        <Y1>1475</Y1>
     </Key>
 
-    <!-- ETC -->
-        <Key>
-        <Value>'</Value>
-        <Longclickable>TRUE</Longclickable>
-        <X1>725</X1>
-        <Y1>2370</Y1>
-        <X2>725</X2>
-        <Y2>2370</Y2>
-    </Key>
 </Keypad>

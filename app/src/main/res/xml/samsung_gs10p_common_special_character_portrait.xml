@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Keypad>
+    <!-- 2cols -->
+    <Key>
+        <Value>/</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>590</X1>
+        <Y1>1610</Y1>
+        <X2>590</X2>
+        <Y2>1610</Y2>
+    </Key>
+
+    <!-- 2cols -->
+    <Key>
+        <Value>!</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>120</X1>
+        <Y1>1760</Y1>
+        <X2>120</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>@</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>225</X1>
+        <Y1>1760</Y1>
+        <X2>225</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>#</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>330</X1>
+        <Y1>1760</Y1>
+        <X2>330</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>%</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>435</X1>
+        <Y1>1760</Y1>
+        <X2>435</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>^</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>540</X1>
+        <Y1>1760</Y1>
+        <X2>540</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>*</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>750</X1>
+        <Y1>1760</Y1>
+        <X2>750</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>(</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>855</X1>
+        <Y1>1760</Y1>
+        <X2>855</X2>
+        <Y2>1760</Y2>
+    </Key>
+    <Key>
+        <Value>)</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>960</X1>
+        <Y1>1760</Y1>
+        <X2>960</X2>
+        <Y2>1760</Y2>
+    </Key>
+
+
+    <!-- 3cols -->
+    <Key>
+        <Value>-</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>225</X1>
+        <Y1>1900</Y1>
+        <X2>225</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>'</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>330</X1>
+        <Y1>1900</Y1>
+        <X2>330</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>"</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>435</X1>
+        <Y1>1900</Y1>
+        <X2>435</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>:</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>540</X1>
+        <Y1>1900</Y1>
+        <X2>540</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>;</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>645</X1>
+        <Y1>1900</Y1>
+        <X2>645</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>,</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>750</X1>
+        <Y1>1900</Y1>
+        <X2>750</X2>
+        <Y2>1900</Y2>
+    </Key>
+    <Key>
+        <Value>?</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>855</X1>
+        <Y1>1900</Y1>
+        <X2>855</X2>
+        <Y2>1900</Y2>
+    </Key>
+
+    <!-- Bottom -->
+    <Key>
+        <Value>.</Value>
+        <Longclickable>FALSE</Longclickable>
+        <X1>860</X1>
+        <Y1>2040</Y1>
+    </Key>
+    <Key>
+        <Value>~</Value>
+        <Longclickable>TRUE</Longclickable>
+        <X1>860</X1>
+        <Y1>2070</Y1>
+        <X1>860</X1>
+        <Y1>1680</Y1>
+    </Key>
+
+    <!-- Shift -->
+    <Key>
+        <Value>↑</Value>
+        <Longclickable>FALSE</Longclickable>
+        <X1>95</X1>
+        <Y1>2370</Y1>
+    </Key>
+
+    <!-- Spacebar-->
+    <Key>
+        <Value>^</Value>
+        <Longclickable>FALSE</Longclickable>
+        <X1>720</X1>
+        <Y1>2570</Y1>
+    </Key>
+</Keypad>

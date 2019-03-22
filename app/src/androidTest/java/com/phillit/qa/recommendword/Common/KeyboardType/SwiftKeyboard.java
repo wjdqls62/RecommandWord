@@ -1,4 +1,6 @@
 package com.phillit.qa.recommendword.Common.KeyboardType;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
@@ -22,6 +24,24 @@ public class SwiftKeyboard extends Keyboard {
     @Override
     public Key.keyCordinate searchKeyboardView(String targetStr){
         return recommendWordParser.searchKeyboardView(targetStr);
+    }
+
+    @Override
+    public void changeLanguage() {
+        device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME / 2);
+        device.getUiDevice().swipe(550,2570, 900, 2570, 120);
+        device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME / 2);
+    }
+
+
+    @Override
+    public void resetKeyboard() throws UiObjectNotFoundException {
+        device.launchApplication("SwiftKey 키보드");
+        device.getUiDevice().pressMenu();
+        device.getUiDevice().findObject(new UiSelector().description("옵션 더보기")).click();
+        device.touchText("입력 데이터 지우기");
+        device.touchText("계속");
+        device.goToIdle();
     }
 
     @Override

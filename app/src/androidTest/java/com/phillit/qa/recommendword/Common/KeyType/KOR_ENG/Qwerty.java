@@ -1,8 +1,6 @@
 package com.phillit.qa.recommendword.Common.KeyType.KOR_ENG;
 
 import android.util.Log;
-
-import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
@@ -45,10 +43,9 @@ public class Qwerty extends KeyType {
         spacebar_y = normalKeyList.get("^").keyCordinates.get(0).y;
 
         // 영문의 경우 대문자 입력을 위해 Shift의 좌표를 Preload
-        if(language == KeyType.ENG_QWERTY){
-            shift_x = normalKeyList.get("↑").keyCordinates.get(0).x;
-            shift_y = normalKeyList.get("↑").keyCordinates.get(0).y;
-        }
+        shift_x = normalKeyList.get("↑").keyCordinates.get(0).x;
+        shift_y = normalKeyList.get("↑").keyCordinates.get(0).y;
+
 
         if(language == KeyType.KOR_QWERTY){
             separater = new SeparateKorean();
@@ -69,8 +66,8 @@ public class Qwerty extends KeyType {
 
     private void typingKeyboard(char[] arrChar){
         boolean isCurrentWordContainsEndString= false;
+        boolean isChangeLanguage = false;   // 한글TC인데 영문이 포함될 경우
         int lastIndex = 0;
-        String separateEndStringWord = "";
         Key key = null;
         Key.keyCordinate recommendKey = null;
 
@@ -80,13 +77,14 @@ public class Qwerty extends KeyType {
 
         if((lastIndex = isCurWordLastIndexEndString(arrChar)) != -1){
             isCurrentWordContainsEndString = true;
-            Log.i("@@@", "special char index : " + lastIndex);
         }
 
         for(int i=0; i<arrChar.length; i++){
             String targetChar = String.valueOf(arrChar[i]);
 
+            isChangeLanguage = false;
             isSpecialChar = device.isSpecialCharacter(targetChar);
+            Log.i("@@@", "TargetChar : " + targetChar + " / isSpecialChar : " + isSpecialChar);
 
             // Key값 삽입
             // 특수문자가 아닐경우
@@ -105,19 +103,36 @@ public class Qwerty extends KeyType {
                             if(!isPrevWordContainsEndString()){
                                 device.clickAndCount(shift_x, shift_y);
                                 key = normalKeyList.get(targetChar.toLowerCase());
+                                device.userWait(1000);   // 간헐적으로 Shift가 씹히는현상으로 Delay 추가
                             }else{
                                 key = normalKeyList.get(targetChar.toLowerCase());
                             }
                         }
                     }
                 }else{
-                    key = normalKeyList.get(targetChar);
+                    // 한글 KSR_LG 473단어('g6') 로 인해 영문자 입력에 대한 하드코딩
+                    if(language == KOR_QWERTY && targetChar.equals("g")){
+                        isChangeLanguage = true;
+                        key = normalKeyList.get("ㅎ");
+                    }else if(language == KOR_QWERTY && targetChar.equals("A")){
+                        isChangeLanguage = true;
+                        key = normalKeyList.get("ㅁ");
+                    }else if(language == KOR_QWERTY && targetChar.equals("I")){
+                        isChangeLanguage = true;
+                        key = normalKeyList.get("ㅑ");
+                    }else if(language == KOR_QWERTY && targetChar.equals("N")){
+                        isChangeLanguage = true;
+                        key = normalKeyList.get("ㅜ");
+                    }else{
+                        Log.i("@@@", "asdfasdfasdfasdf");
+                        key = normalKeyList.get(targetChar);
+                    }
                 }
-
 
                 // 터치부문
                 if(!key.Longclickable){
                     for(int j=0; j<key.keyCordinates.size(); j++){
+                        device.userWait(500);
                         try{
                             recommendKey = keyboard.searchKeyboardView(currentWord);
                             if(recommendKey != null && !isCurrentWordContainsEndString){
@@ -131,14 +146,13 @@ public class Qwerty extends KeyType {
                                     delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
                                     recommendKey = keyboard.searchKeyboardView(delSpecialChar);
                                 }else if(language == KeyType.KOR_QWERTY){
-                                    //delSpecialChar = String.valueOf(arrChar).substring(0,lastIndex);
                                     delSpecialChar = currentWord.substring(0, isCurWordLastIndexEndString(currentWord.toCharArray()));
                                     recommendKey = keyboard.searchKeyboardView(delSpecialChar);
                                     Log.i("@@@", delSpecialChar);
                                 }
-
                                 if(recommendKey != null){
                                     device.clickAndCount(recommendKey.x, recommendKey.y);
+                                    device.userWait(1000);
                                     i = lastIndex-1;
                                     break;
                                 }
@@ -147,8 +161,40 @@ public class Qwerty extends KeyType {
                             Log.i("@@@", "recommendKey is null...");
                             e.printStackTrace();
                         }
-                        device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y);
-                        device.userWait(1000);
+
+                        // 한글 TestCase에 영어가 있을경우 언어변경 후 입력한다. 이후 다시 한글 자판으로 복귀한다.
+                        if(isChangeLanguage){
+                            // 전단어에 끝맺음 문자가 포함되지 않고 입력할 문자가 대문자가 아닐 경우
+                            if(!isPrevWordContainsEndString() && !isUpper(targetChar)){
+                                //Log.i("@@@", "전단어에 끝맺음 문자가 포함되지 않고 입력할 문자가 대문자가 아닐 경우" + " / x:" + key.keyCordinates.get(j).x+ " / y:" + key.keyCordinates.get(j).y);
+                                keyboard.changeLanguage();
+                                device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y);
+                                keyboard.changeLanguage();
+                            }
+                            // 전 단어에 끝맺음 문자가 포함되지 않고 대문자의 경우
+                            else if(!isPrevWordContainsEndString() && isUpper(targetChar)){
+                                //Log.i("@@@", "전 단어에 끝맺음 문자가 포함되지 않고 대문자의 경우" + " / x:" + key.keyCordinates.get(j).x+ " / y:" + key.keyCordinates.get(j).y);
+                                keyboard.changeLanguage();
+                                device.clickAndCount(shift_x, shift_y); device.userWait(500);
+                                device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y); device.userWait(500);
+                                keyboard.changeLanguage();
+                            }
+                            // 전 단어에 끝맺음 문자가 포함되지만 첫글자가 아닐때
+                            else if(isPrevWordContainsEndString() && i != 0){
+                                //Log.i("@@@", "전 단어에 끝맺음 문자가 포함되지만 첫글자가 아닐때" + " / x:" + key.keyCordinates.get(j).x+ " / y:" + key.keyCordinates.get(j).y);
+                                keyboard.changeLanguage();
+                                device.clickAndCount(shift_x, shift_y); device.userWait(500);
+                                device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y); device.userWait(500);
+                                keyboard.changeLanguage();
+                            }else if(isPrevWordContainsEndString() && i==0){
+                                keyboard.changeLanguage();
+                                device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y); device.userWait(500);
+                                keyboard.changeLanguage();
+                            }
+                        }else{
+                            device.clickAndCount(key.keyCordinates.get(j).x, key.keyCordinates.get(j).y);
+                        }
+                        device.userWait(500);
                     }
                 }else{
                     device.swipeAndCount(key.keyCordinates.get(0).x, key.keyCordinates.get(0).y, key.keyCordinates.get(1).x, key.keyCordinates.get(1).y);
@@ -156,14 +202,25 @@ public class Qwerty extends KeyType {
             }
             // 특수문자의 경우
             else{
+                device.userWait(500);
                 specialCharacter.input(targetChar);
             }
         }
-        // 추천단어를 누르지 못하고 풀타로 입력했을 경우 스페이스바를 수동으로 입력한다.
-        if(recommendKey == null){
+        // 삼성 키보드 :: 추천단어를 누르지 못하고 풀타로 입력했을 경우 스페이스바를 수동으로 입력한다.
+        if((device.getKeyboardType() == KeyboardType.S10P_KEYBOARD_SAMSUNG && recommendKey == null)){
+            device.userWait(500);
             device.clickAndCount(spacebar_x, spacebar_y);
             device.userWait(500);
         }
+        // SwiftKeyboard :: 추천단어를 누르지 못하고 풀타로 입력했고 끝맺음 문자가 없을경우 스페이스바를 누른다.
+        // 끝맺음 문자가 포함될 경우 스페이스바를 누르지 않는다
+        else if(device.getKeyboardType() == KeyboardType.G6_KEYBOARD_SWIFT){
+            if(!isCurrentWordContainsEndString){
+                device.clickAndCount(spacebar_x, spacebar_y);
+                device.userWait(500);
+            }
+        }
+        device.userWait(500);
     }
 
     // 대문자 체크
@@ -178,7 +235,8 @@ public class Qwerty extends KeyType {
             if(String.valueOf(prevWord.charAt(prevWord.length()-1)).equals(".")
                     || String.valueOf(prevWord.charAt(prevWord.length()-1)).equals(",")
                     || String.valueOf(prevWord.charAt(prevWord.length()-1)).equals("?")
-                    || String.valueOf(prevWord.charAt(prevWord.length()-1)).equals("!")){
+                    || String.valueOf(prevWord.charAt(prevWord.length()-1)).equals("!")
+                    || String.valueOf(prevWord.charAt(prevWord.length()-1)).equals("…")){
                 Log.i("@@@", "이전단어에 문장마침표 있음");
                 result = true;
             }
@@ -240,14 +298,13 @@ public class Qwerty extends KeyType {
             }
 
             if(isLast1 && isLast2){
-                index = temp.length()-2;
+                index =  temp.length()-2;
             }else if(isLast1){
                 index = temp.length()-1;
             }
         }catch (StringIndexOutOfBoundsException e){
 
         }
-
         return index;
     }
 }

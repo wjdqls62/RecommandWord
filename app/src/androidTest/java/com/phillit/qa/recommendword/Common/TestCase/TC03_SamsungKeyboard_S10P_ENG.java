@@ -9,23 +9,23 @@ import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.KeyType.KOR_ENG.Qwerty;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
-import com.phillit.qa.recommendword.Common.KeyboardType.SwiftKeyboard;
-import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
+import com.phillit.qa.recommendword.Common.KeyboardType.SamsungKeyboard;
 import com.phillit.qa.recommendword.Common.TestCaseParser;
 
-public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
+public class TC03_SamsungKeyboard_S10P_ENG extends BaseTestCase {
     private Device device;
-    private Keyboard swiftKeyboard;
+    private SamsungKeyboard samsungKeyboard;
     private TestCaseParser testCaseParser;
     private Qwerty qwerty_eng;
     private StringBuffer word;
-    private String testName, touchCount = "";
+    private String testName = "";
+    private String toucchCount, touchCount = "";
 
-    public TC01_SwiftKeyboard_G6_ENG(Device device){
+    public TC03_SamsungKeyboard_S10P_ENG(Device device){
         this.device = device;
         testCaseParser = new TestCaseParser("ENG", device);
-        swiftKeyboard = new SwiftKeyboard(device);
-        qwerty_eng = new Qwerty(device, swiftKeyboard, KeyType.PORTRAIT, KeyType.ENG_QWERTY);
+        samsungKeyboard = new SamsungKeyboard(device);
+        qwerty_eng = new Qwerty(device, samsungKeyboard, KeyType.PORTRAIT, KeyType.ENG_QWERTY);
         testName = device.getDeviceModelName() + "_" + "ENG_" + device.getTestTypeToString();
     }
 
@@ -87,10 +87,10 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
         device.goToIdle();
 
         try {
-            swiftKeyboard.resetKeyboard();
+            samsungKeyboard.resetKeyboard();
         } catch (UiObjectNotFoundException e) {
+            Log.d("@@@", "resetSamsungKeyboars is Fail...");
             e.printStackTrace();
         }
-
     }
 }

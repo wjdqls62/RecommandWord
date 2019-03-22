@@ -36,10 +36,8 @@ public class Device {
     private int keyboardType, testType = 0;
     public int typing_count = 0;
 
-    public Device(UiDevice Device, Context context, int keyboardType, int testType) throws IOException {
+    public Device(UiDevice Device, Context context) throws IOException {
         this.uiDevice = Device;
-        this.keyboardType = keyboardType;
-        this.testType = testType;
         this.context = context;
         testPlan = new TestPlan();
         deviceModelName = getProductModelName();
@@ -84,6 +82,12 @@ public class Device {
         userWait(500);
         uiDevice.pressBack();
         userWait(500);
+        uiDevice.pressBack();
+        userWait(500);
+        uiDevice.pressBack();
+        userWait(500);
+        uiDevice.pressBack();
+        userWait(500);
         uiDevice.pressHome();
         Log.i("@@@", "goToIdle");
     }
@@ -95,6 +99,8 @@ public class Device {
 
         typing_count += 1;
 
+        userWait(50);
+
         Log.i("@@@", "Click Result : " + result + " /  X : " + x + " / Y : " + y + "/ Touch Count : " + typing_count);
 
     }
@@ -102,11 +108,11 @@ public class Device {
     public void swipeAndCount(int startX, int startY, int endX, int endY){
         boolean result = false;
 
-        result = uiDevice.swipe(startX, startY, endX, endY, 50);
+        result = uiDevice.swipe(startX, startY, endX, endY, 120);
 
         typing_count += 1;
 
-        Log.i("@@@", "Touch Count : " + typing_count);
+        Log.i("@@@", "Swipe Result : " + result + " / Touch Count : " + typing_count);
     }
 
     // 화면상 요소의 text값으로 객체를 터치한다
@@ -166,6 +172,7 @@ public class Device {
 
         for(int i=0; i<apps.size(); i++){
             String searchedApp = apps.get(i).loadLabel(packageManager).toString();
+            //Log.i("@@@", "Name : " + searchedApp);
             if(searchedApp.equals(appName)){
                 targetPackageName = apps.get(i).packageName;
                 break;
@@ -405,7 +412,7 @@ public class Device {
             return false;
         }
         for(int i=0; i < str.length(); i++){
-            if(!str.equals("^")){
+            if(!str.equals("^") || !str.equals("'")){
                 if(!Character.isLetterOrDigit(str.charAt(i))){
                     return true;
                 }else if(str.equals("π") || str.equals("ℓ")){
@@ -608,7 +615,45 @@ public class Device {
         return keyboardType;
     }
 
+    public void setKeyboardType(int keyboardType){
+        this.keyboardType = keyboardType;
+    }
+
     public int getTestType(){
         return testType;
+    }
+
+    // TestType을 String으로 Return한다.
+    public String getTestTypeToString(){
+        String str = "";
+
+        if(testType == Configuration.KSR_CONVERSATION){
+            str = "KSR_CONVERSATION";
+        }else if(testType == Configuration.KSR_LG){
+            str = "KSR_LG";
+        }
+        return str;
+    }
+
+    public void setTestType(int testType){
+        this.testType = testType;
+    }
+
+    public void launchMonkeyInput(String testName) throws UiObjectNotFoundException {
+        UiObject object;
+
+        launchApplication("Monkey Input");
+        object = new UiObject(new UiSelector().resourceId("com.phillit.qa.monkeyinput:id/edt_filename"));
+        if(object.waitForExists(5000)){
+            touchObject(object);
+            userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME/2);
+            object.setText(testName);
+
+            object = new UiObject(new UiSelector().resourceId("com.phillit.qa.monkeyinput:id/edt_input"));
+            if(object.waitForExists(Configuration.DEFAULT_OBJECT_WAIT_TIME)){
+                object.click();
+            }
+        }
+        userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
     }
 }

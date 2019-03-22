@@ -5,6 +5,7 @@ import android.content.Context;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
+import com.phillit.qa.recommendword.Common.KeyboardType.KeyboardType;
 
 import java.util.HashMap;
 
@@ -26,7 +27,7 @@ public class Qwerty_Special_Character extends KeyType {
     @Override
     public void input(String args) {
         String targetChar = args;
-        Nexus5_specialKeyList_Btn(screenOrientation, language);
+        //Nexus5_specialKeyList_Btn(screenOrientation, language);
         key = specialKeyList.get(targetChar);
         if(key != null){
             if(!key.Longclickable){
@@ -34,7 +35,14 @@ public class Qwerty_Special_Character extends KeyType {
                     device.clickAndCount(key.keyCordinates.get(k).x, key.keyCordinates.get(k).y);
                 }
             }else{
-                device.swipeAndCount(key.keyCordinates.get(0).x, key.keyCordinates.get(0).y, key.keyCordinates.get(1).x, key.keyCordinates.get(1).y);
+                // SwiftKeyboard의 경우 "~" 입력시 마침표버튼에서 Swipe가 필요하여 하드코딩
+                if(device.getKeyboardType() == KeyboardType.G6_KEYBOARD_SWIFT && language == KeyType.KOR_QWERTY && args.equals("~")){
+                    device.swipeAndCount(1125, 2570, 790, 2480);
+                }else if(device.getKeyboardType() == KeyboardType.G6_KEYBOARD_SWIFT && language == KeyType.KOR_QWERTY && args.equals("!")){
+                    device.swipeAndCount(1125, 2570, 635, 2480);
+                }else{
+                    device.swipeAndCount(key.keyCordinates.get(0).x, key.keyCordinates.get(0).y, key.keyCordinates.get(1).x, key.keyCordinates.get(1).y);
+                }
             }
         }else{
             //넥서스5 하드코딩

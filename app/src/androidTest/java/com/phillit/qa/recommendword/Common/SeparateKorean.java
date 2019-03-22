@@ -69,7 +69,7 @@ public class SeparateKorean {
                 int jungsung 	= chars % (21 * 28) / 28;
                 int jongsung 	= chars % (21 * 28) % 28;
 
-                System.out.println("초성:"+chosung + " /중성:"+jungsung + " /종성:"+jongsung);
+                //System.out.println("초성:"+chosung + " /중성:"+jungsung + " /종성:"+jongsung);
 
 
 

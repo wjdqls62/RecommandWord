@@ -1,4 +1,6 @@
 package com.phillit.qa.recommendword.Common.RecommendWordParse;
+import android.util.Log;
+
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.Key;
@@ -11,7 +13,8 @@ import java.io.IOException;
 public class RecommendWordParse {
     private Keyboard keyboardType;
     private Device device;
-    private final int[] SWIFTKEYBOARD_AREA = Configuration.SWIFTKEYBOARD_AREA;
+    private final int[] SWIFTKEYBOARD_AREA = Configuration.SWIFT_KEYBOARD_AREA;
+    private final int[] SAMSUNG_AREA = Configuration.SAMSUNG_KEYBOARD_AREA;
 
     public RecommendWordParse(Keyboard keyboard, Device device){
         this.keyboardType = keyboard;
@@ -25,6 +28,12 @@ public class RecommendWordParse {
         if(device.getKeyboardType() == KeyboardType.G6_KEYBOARD_SWIFT){
             if(target.x  >= SWIFTKEYBOARD_AREA[0] && target.x <= SWIFTKEYBOARD_AREA[2]){
                 if(target.y >= SWIFTKEYBOARD_AREA[1] && target.y <= SWIFTKEYBOARD_AREA[3]){
+                    result = true;
+                }
+            }
+        }else if(device.getKeyboardType() == KeyboardType.S10P_KEYBOARD_SAMSUNG){
+            if(target.x  >= SAMSUNG_AREA[0] && target.x <= SAMSUNG_AREA[2]){
+                if(target.y >= SAMSUNG_AREA[1] && target.y <= SAMSUNG_AREA[3]){
                     result = true;
                 }
             }
@@ -46,7 +55,22 @@ public class RecommendWordParse {
                         // SwiftKeyboard의 경우 Class 명과 Package명이 일치하는 Line을 찾는다.
                         if(line.contains(Configuration.SWIFTKEYBOARD_PARSE_KEYWORD1) && line.contains(Configuration.SWIFTKEYBOARD_PARSE_KEYWORD2)){
                             // content-desc의 값이 일치하는지 확인한다.
+                            //Log.i("@@@", "Word : " + targetStr + " / Prediction-Word : " + keyboardType.getProperty("content-desc=", line));
                             if(targetStr.equals(keyboardType.getProperty("content-desc=", line))){
+                                Key.keyCordinate tempCordinate =  keyboardType.getCordinate(keyboardType.getProperty("bounds=", line));
+                                // 추천단어바 영역내에 존재하는지 확인한다.
+                                if(isContainArea(tempCordinate)){
+                                    //device.clickAndCount(btnCordinate.x, btnCordinate.y);
+                                    btnCordinate = tempCordinate;
+                                    break;
+                                }
+                            }
+                        }
+                    }else if(device.getKeyboardType() == KeyboardType.S10P_KEYBOARD_SAMSUNG){
+                        // Samsung Keyboard 경우 Class 명과 Package명이 일치하는 Line을 찾는다.
+                        if(line.contains(Configuration.SAMSUNG_PARSE_KEYWORD1) && line.contains(Configuration.SAMSUNG_PARSE_KEYWORD2)){
+                            // content-desc의 값이 일치하는지 확인한다.
+                            if(targetStr.equals(keyboardType.getProperty("text=", line))){
                                 Key.keyCordinate tempCordinate =  keyboardType.getCordinate(keyboardType.getProperty("bounds=", line));
                                 // 추천단어바 영역내에 존재하는지 확인한다.
                                 if(isContainArea(tempCordinate)){

@@ -179,14 +179,6 @@
         <Y2>2370</Y2>
     </Key>
     <Key>
-        <Value>'</Value>
-        <Longclickable>TRUE</Longclickable>
-        <X1>725</X1>
-        <Y1>2370</Y1>
-        <X2>725</X2>
-        <Y2>2370</Y2>
-    </Key>
-    <Key>
         <Value>:</Value>
         <Longclickable>TRUE</Longclickable>
         <X1>865</X1>
@@ -215,7 +207,7 @@
     <Key>
         <Value>,</Value>
         <Longclickable>FALSE</Longclickable>
-        <X1>345</X1>
+        <X1>360</X1>
         <Y1>2570</Y1>
     </Key>
     <Key>
@@ -263,5 +255,17 @@
         <Longclickable>FALSE</Longclickable>
         <X1>720</X1>
         <Y1>2570</Y1>
+    </Key>
+
+    <!-- ETC -->
+    <Key>
+        <Value>…</Value>
+        <Longclickable>FALSE</Longclickable>
+        <X1>1125</X1>
+        <Y1>2570</Y1>
+        <X2>1125</X2>
+        <Y2>2570</Y2>
+        <X3>1125</X3>
+        <Y3>2570</Y3>
     </Key>
 </Keypad>

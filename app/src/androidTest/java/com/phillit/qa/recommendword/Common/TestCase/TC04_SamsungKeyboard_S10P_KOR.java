@@ -4,29 +4,33 @@ import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.util.Log;
+
 import com.phillit.qa.recommendword.BuildConfig;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.KeyType.KOR_ENG.Qwerty;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
-import com.phillit.qa.recommendword.Common.KeyboardType.SwiftKeyboard;
-import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
+import com.phillit.qa.recommendword.Common.KeyboardType.SamsungKeyboard;
+import com.phillit.qa.recommendword.Common.SeparateKorean;
 import com.phillit.qa.recommendword.Common.TestCaseParser;
 
-public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
+public class TC04_SamsungKeyboard_S10P_KOR extends BaseTestCase {
     private Device device;
-    private Keyboard swiftKeyboard;
+    private SamsungKeyboard samsungKeyboard;
     private TestCaseParser testCaseParser;
-    private Qwerty qwerty_eng;
+    private Qwerty qwerty_kor;
+    private SeparateKorean separater;
     private StringBuffer word;
     private String testName, touchCount = "";
 
-    public TC01_SwiftKeyboard_G6_ENG(Device device){
+
+    public TC04_SamsungKeyboard_S10P_KOR(Device device){
         this.device = device;
-        testCaseParser = new TestCaseParser("ENG", device);
-        swiftKeyboard = new SwiftKeyboard(device);
-        qwerty_eng = new Qwerty(device, swiftKeyboard, KeyType.PORTRAIT, KeyType.ENG_QWERTY);
-        testName = device.getDeviceModelName() + "_" + "ENG_" + device.getTestTypeToString();
+        testCaseParser = new TestCaseParser("KOR", device);
+        samsungKeyboard = new SamsungKeyboard(device);
+        qwerty_kor = new Qwerty(device, samsungKeyboard, KeyType.PORTRAIT, KeyType.KOR_QWERTY);
+        separater = new SeparateKorean();
+        testName = device.getDeviceModelName() + "_" + "KOR_" + device.getTestTypeToString();
     }
 
     @Override
@@ -34,9 +38,12 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
         if(BuildConfig.DEBUG){
             Log.i("@@@", "ReadyTest()");
         }
-
         // Monkey Input 실행 후 키보드 Visible
         device.launchMonkeyInput(testName);
+        // 한국어 -> 영어
+        samsungKeyboard.changeLanguage();
+        // 5초 대기
+        device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
     }
 
     @Override
@@ -51,9 +58,9 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
                 if(word == null){
                     break;
                 }else{
-                    qwerty_eng.currentWord = String.valueOf(word);
-                    device.inputMethod(String.valueOf(word), qwerty_eng);
-                    qwerty_eng.prevWord = String.valueOf(word);
+                    qwerty_kor.currentWord = String.valueOf(word);
+                    device.inputMethod(String.valueOf(word), qwerty_kor);
+                    qwerty_kor.prevWord = String.valueOf(word);
                     touchCount += device.typing_count + " ";
                     Log.i("@@@", "Num : "+ (i-2) + " / Input Word : " + word + " / Touch Cnt : " + device.typing_count);
                     device.typing_count = 0;
@@ -72,6 +79,8 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
             Log.i("@@@", "FinishTest()");
         }
 
+        samsungKeyboard.changeLanguage();   // 한국어 -> 영어
+
         device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
         device.touchObject("com.phillit.qa.monkeyinput:id/btn_save");
         device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
@@ -87,10 +96,10 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
         device.goToIdle();
 
         try {
-            swiftKeyboard.resetKeyboard();
+            samsungKeyboard.resetKeyboard();
         } catch (UiObjectNotFoundException e) {
+            Log.d("@@@", "resetSamsungKeyboars is Fail...");
             e.printStackTrace();
         }
-
     }
 }
