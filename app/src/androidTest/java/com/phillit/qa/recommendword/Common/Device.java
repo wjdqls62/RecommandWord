@@ -412,7 +412,7 @@ public class Device {
             return false;
         }
         for(int i=0; i < str.length(); i++){
-            if(!str.equals("^") || !str.equals("'")){
+            if(!str.equals("^")){
                 if(!Character.isLetterOrDigit(str.charAt(i))){
                     return true;
                 }else if(str.equals("π") || str.equals("ℓ")){
@@ -655,5 +655,15 @@ public class Device {
             }
         }
         userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
+    }
+
+    public void parseWindow(){
+        try {
+            getUiDevice().setCompressedLayoutHeirarchy(true);
+            userWait(1000);
+            getUiDevice().dumpWindowHierarchy(new File("/sdcard/QA/InputTest/dump.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
