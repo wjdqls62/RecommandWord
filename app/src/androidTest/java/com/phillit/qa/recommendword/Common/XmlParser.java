@@ -112,10 +112,15 @@ public class XmlParser {
             eventType = parser.next();
         } // End while
 
+        // 특수문자
         if (testType == KeyboardType.G6_KEYBOARD_SWIFT) {
-            // 특수문자
+            // SwiftKeyboard의 경우 기호롱탭의 배열이 한글과 영문이 상이하여 조건문 분기
             if (parsingMode == KeyType.PORTRAIT) {
-                parser = resource.getXml(R.xml.swiftkey_g6_common_special_character_portrait);
+                if(language == KeyType.KOR_QWERTY){
+                    parser = resource.getXml(R.xml.swiftkey_g6_kor_special_character_portrait);
+                }else if(language == KeyType.ENG_QWERTY){
+                    parser = resource.getXml(R.xml.swiftkey_g6_eng_special_character_portrait);
+                }
             }
         }else if(testType == KeyboardType.S10P_KEYBOARD_SAMSUNG){
             if (parsingMode == KeyType.PORTRAIT) {
