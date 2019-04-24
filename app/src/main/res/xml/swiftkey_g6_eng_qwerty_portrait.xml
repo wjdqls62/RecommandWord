@@ -243,7 +243,7 @@
     </Key>
 
     <!-- ETC -->
-        <Key>
+    <Key>
         <Value>'</Value>
         <Longclickable>TRUE</Longclickable>
         <X1>725</X1>
