@@ -26,7 +26,7 @@ public class TC03_SamsungKeyboard_S10P_ENG extends BaseTestCase {
         testCaseParser = new TestCaseParser("ENG", device);
         samsungKeyboard = new SamsungKeyboard(device);
         qwerty_eng = new Qwerty(device, samsungKeyboard, KeyType.PORTRAIT, KeyType.ENG_QWERTY);
-        testName = device.getDeviceModelName() + "_" + "ENG_" + device.getTestTypeToString();
+        testName = device.getDeviceModelName() + "_" + "ENG_" + device.getKeyboardTypeToString() + "_" + device.getTestTypeToString();
     }
 
     @Override

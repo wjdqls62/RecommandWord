@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
+import com.phillit.qa.recommendword.Common.KeyboardType.KeyboardType;
 import com.phillit.qa.recommendword.R;
 import java.io.File;
 import java.io.FileWriter;
@@ -89,6 +90,7 @@ public class Device {
         uiDevice.pressBack();
         userWait(500);
         uiDevice.pressHome();
+        userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
         Log.i("@@@", "goToIdle");
     }
 
@@ -623,6 +625,29 @@ public class Device {
         return testType;
     }
 
+    // KeyboardType을 String으로 Return한다.
+    public String getKeyboardTypeToString(){
+        String str = "";
+
+        if(keyboardType == KeyboardType.S10P_KEYBOARD_SAMSUNG){
+            str = "Samsung";
+        }
+        else if(keyboardType == KeyboardType.G8_KEYBOARD_LG){
+            str = "LG";
+        }
+        else if(keyboardType == KeyboardType.G6_KEYBOARD_GBOARD){
+            str = "Gboard";
+        }
+        else if(keyboardType == KeyboardType.G6_KEYBOARD_SWIFT){
+            str = "Swift";
+        }
+        else if(keyboardType == KeyboardType.G6_KEYBOARD_REBIT){
+            str = "Rebit";
+        }
+
+        return str;
+    }
+
     // TestType을 String으로 Return한다.
     public String getTestTypeToString(){
         String str = "";
@@ -657,6 +682,7 @@ public class Device {
         userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
     }
 
+    // 테스트의 편의를 위해 dump.xml을 /sdcard/QA/InputTest/ 위치에 저장한다.
     public void parseWindow(){
         try {
             getUiDevice().setCompressedLayoutHeirarchy(true);
@@ -665,5 +691,40 @@ public class Device {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // 단말의 설정메뉴에서 키보드를 선택한다.
+    public void setKeyboard_G6(int keyboardType) throws UiObjectNotFoundException {
+        UiObject object;
+        UiScrollable listview = new UiScrollable(new UiSelector().scrollable(true));
+
+        if(launchApplication("설정")){
+            object = new UiObject(new UiSelector().text("일반"));
+            if(object.waitForExists(Configuration.DEFAULT_OBJECT_WAIT_TIME)){
+                object.click();
+                object = new UiObject(new UiSelector().text("언어 및 입력"));
+                if(listview.scrollIntoView(object)){
+                      object.click();
+                      object = new UiObject(new UiSelector().text("현재 키보드"));
+                      if(object.waitForExists(Configuration.DEFAULT_OBJECT_WAIT_TIME)){
+                          object.click();
+                          userWait(1500);
+
+                          if(keyboardType == KeyboardType.G6_KEYBOARD_REBIT){
+                              touchText("REBIT A키보드");
+                          }else if(keyboardType == KeyboardType.G6_KEYBOARD_SWIFT){
+                              touchText("SwiftKey 키보드");
+                          }else if(keyboardType == KeyboardType.G6_KEYBOARD_GBOARD){
+                              touchText("Gboard");
+                          }else if(keyboardType == KeyboardType.G8_KEYBOARD_LG){
+                              touchText("영어");
+                          }else if(keyboardType == KeyboardType.G6_KEYBOARD_NAVER){
+                              touchText("네이버 스마트보드");
+                          }
+                      }
+                }
+            }
+        }
+        goToIdle();
     }
 }

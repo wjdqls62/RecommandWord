@@ -30,7 +30,7 @@ public class TC04_SamsungKeyboard_S10P_KOR extends BaseTestCase {
         samsungKeyboard = new SamsungKeyboard(device);
         qwerty_kor = new Qwerty(device, samsungKeyboard, KeyType.PORTRAIT, KeyType.KOR_QWERTY);
         separater = new SeparateKorean();
-        testName = device.getDeviceModelName() + "_" + "KOR_" + device.getTestTypeToString();
+        testName = device.getDeviceModelName() + "_" + "KOR_" + device.getKeyboardTypeToString() + "_" + device.getTestTypeToString();
     }
 
     @Override

@@ -7,6 +7,5 @@ public abstract class KeyboardType {
     public static final int S10P_KEYBOARD_SAMSUNG = 3;  // GS10+ Samsung Keyboard
     public static final int G8_KEYBOARD_LG = 4;
     public static final int G6_KEYBOARD_REBIT = 5;
-
-
+    public static final int G6_KEYBOARD_NAVER = 6;  // G6 Naver Smart board
 }

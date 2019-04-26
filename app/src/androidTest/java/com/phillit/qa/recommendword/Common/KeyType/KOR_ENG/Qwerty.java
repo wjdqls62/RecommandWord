@@ -124,7 +124,6 @@ public class Qwerty extends KeyType {
                         isChangeLanguage = true;
                         key = normalKeyList.get("ㅜ");
                     }else{
-                        Log.i("@@@", "asdfasdfasdfasdf");
                         key = normalKeyList.get(targetChar);
                     }
                 }
@@ -219,6 +218,12 @@ public class Qwerty extends KeyType {
                 device.clickAndCount(spacebar_x, spacebar_y);
                 device.userWait(500);
             }
+        }
+        // Gboard :: 추천단어를 누르지 못하고 풀타로 입력했고 끝맺음 문자가 없을경우 스페이스바를 누른다.
+        // 끝맺음 문자가 포함되도 자동띄어쓰기가 적용되지 않아 무조건 스페이스바를 누른다.
+        else if(device.getKeyboardType() == KeyboardType.G6_KEYBOARD_GBOARD){
+            device.clickAndCount(spacebar_x, spacebar_y);
+            device.userWait(500);
         }
         device.userWait(500);
     }

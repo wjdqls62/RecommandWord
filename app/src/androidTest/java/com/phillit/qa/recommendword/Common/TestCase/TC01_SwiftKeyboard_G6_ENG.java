@@ -26,7 +26,7 @@ public class TC01_SwiftKeyboard_G6_ENG extends BaseTestCase {
         testCaseParser = new TestCaseParser("ENG", device);
         swiftKeyboard = new SwiftKeyboard(device);
         qwerty_eng = new Qwerty(device, swiftKeyboard, KeyType.PORTRAIT, KeyType.ENG_QWERTY);
-        testName = device.getDeviceModelName() + "_" + "ENG_" + device.getTestTypeToString();
+        testName = device.getDeviceModelName() + "_" + "ENG_" + device.getKeyboardTypeToString() + "_" + device.getTestTypeToString();
     }
 
     @Override

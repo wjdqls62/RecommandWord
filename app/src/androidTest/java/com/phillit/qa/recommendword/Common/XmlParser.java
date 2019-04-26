@@ -78,6 +78,12 @@ public class XmlParser {
             } else if (language == KeyType.ENG_QWERTY) {
                 parser = resource.getXml(R.xml.samsung_gs10p_eng_qwerty_portrait);
             }
+        }else if(testType == KeyboardType.G6_KEYBOARD_GBOARD){
+            if(language == KeyType.KOR_QWERTY){
+                parser = resource.getXml(R.xml.gboard_g6_kor_qwerty_portrait);
+            }else if(language == KeyType.ENG_QWERTY){
+                parser = resource.getXml(R.xml.gboard_g6_eng_qwerty_portrait);
+            }
         }
 
         keyList = new HashMap<>();
@@ -125,6 +131,14 @@ public class XmlParser {
         }else if(testType == KeyboardType.S10P_KEYBOARD_SAMSUNG){
             if (parsingMode == KeyType.PORTRAIT) {
                 parser = resource.getXml(R.xml.samsung_gs10p_common_special_character_portrait);
+            }
+        }else if(testType == KeyboardType.G6_KEYBOARD_GBOARD){
+            if (parsingMode == KeyType.PORTRAIT) {
+                if(language == KeyType.KOR_QWERTY){
+                    parser = resource.getXml(R.xml.gboard_g6_kor_special_character_portrait);
+                }else if(language == KeyType.ENG_QWERTY){
+                    parser = resource.getXml(R.xml.gboard_g6_eng_special_character_portrait);
+                }
             }
         }
 

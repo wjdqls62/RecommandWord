@@ -11,6 +11,13 @@ public abstract class Configuration {
     public static final String SAMSUNG_PARSE_KEYWORD1 = "android.widget.TextView"; // Class명
     public static final String SAMSUNG_PARSE_KEYWORD2 = "com.sec.android.inputmethod"; // Package명
 
+    // Gboard Values
+    public static final int[] GBOARD_KEYBOARD_AREA = {0, 1298, 1305, 1700};   // Gboard 추천단어바 영역의 좌표 (LG G6)
+    public static final String GBOARD_PARSE_KEYWORD1 = "android.widget.FrameLayout"; // Class명
+    public static final String GBOARD_PARSE_KEYWORD2 = "com.google.android.inputmethod.latin"; // Package명
+    public static final int GBOARD_CHANGE_LANGUAGE_X = 430;
+    public static final int GBOARD_CHANGE_LANGUAGE_Y = 2570;
+
     // Common Values
     public static final String heirarchyFilePath = "/sdcard/QA/Temp/";
     public static final String heirarchyFileName = "temp.txt";

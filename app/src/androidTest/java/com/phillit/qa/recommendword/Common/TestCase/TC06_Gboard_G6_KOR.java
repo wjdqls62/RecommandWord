@@ -4,30 +4,31 @@ import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.util.Log;
+
 import com.phillit.qa.recommendword.BuildConfig;
 import com.phillit.qa.recommendword.Common.Configuration.Configuration;
 import com.phillit.qa.recommendword.Common.Device;
 import com.phillit.qa.recommendword.Common.KeyType.KOR_ENG.Qwerty;
 import com.phillit.qa.recommendword.Common.KeyType.KeyType;
-import com.phillit.qa.recommendword.Common.KeyboardType.SwiftKeyboard;
+import com.phillit.qa.recommendword.Common.KeyboardType.Gboard;
 import com.phillit.qa.recommendword.Common.RecommendWordParse.Keyboard;
 import com.phillit.qa.recommendword.Common.SeparateKorean;
 import com.phillit.qa.recommendword.Common.TestCaseParser;
 
-public class TC02_SwiftKeyboard_G6_KOR extends BaseTestCase {
+public class TC06_Gboard_G6_KOR extends BaseTestCase {
     private Device device;
-    private Keyboard swiftKeyboard;
+    private Keyboard gboard;
     private TestCaseParser testCaseParser;
     private Qwerty qwerty_kor;
     private SeparateKorean separater;
     private StringBuffer word;
     private String testName, touchCount = "";
 
-    public TC02_SwiftKeyboard_G6_KOR(Device device){
+    public TC06_Gboard_G6_KOR(Device device){
         this.device = device;
         testCaseParser = new TestCaseParser("KOR", device);
-        swiftKeyboard = new SwiftKeyboard(device);
-        qwerty_kor = new Qwerty(device, swiftKeyboard, KeyType.PORTRAIT, KeyType.KOR_QWERTY);
+        gboard = new Gboard(device);
+        qwerty_kor = new Qwerty(device, gboard, KeyType.PORTRAIT, KeyType.KOR_QWERTY);
         separater = new SeparateKorean();
         testName = device.getDeviceModelName() + "_" + "KOR_" + device.getKeyboardTypeToString() + "_" + device.getTestTypeToString();
     }
@@ -42,7 +43,7 @@ public class TC02_SwiftKeyboard_G6_KOR extends BaseTestCase {
         device.launchMonkeyInput(testName);
 
         // 한국어 -> 영어
-        swiftKeyboard.changeLanguage();
+        gboard.changeLanguage();
         // 5초 대기
         device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
     }
@@ -80,7 +81,7 @@ public class TC02_SwiftKeyboard_G6_KOR extends BaseTestCase {
             Log.i("@@@", "FinishTest()");
         }
 
-        swiftKeyboard.changeLanguage();   // 한국어 -> 영어
+        gboard.changeLanguage();   // 한국어 -> 영어
 
         device.userWait(Configuration.DEFAULT_OBJECT_WAIT_TIME);
         device.touchObject("com.phillit.qa.monkeyinput:id/btn_save");
@@ -97,7 +98,7 @@ public class TC02_SwiftKeyboard_G6_KOR extends BaseTestCase {
         device.goToIdle();
 
         try {
-            swiftKeyboard.resetKeyboard();
+            gboard.resetKeyboard();
         } catch (UiObjectNotFoundException e) {
             e.printStackTrace();
         }
